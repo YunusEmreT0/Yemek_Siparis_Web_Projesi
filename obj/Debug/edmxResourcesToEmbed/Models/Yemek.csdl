@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="YemekProjeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="adminler">
+    <Key>
+      <PropertyRef Name="adminID" />
+    </Key>
+    <Property Name="adminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ad" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="soyad" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="eposta" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sifre" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="il">
+    <Key>
+      <PropertyRef Name="ilID" />
+    </Key>
+    <Property Name="ilID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ilAdi" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ilce" Relationship="Self.FK__ilce__ilID__38996AB5" FromRole="il" ToRole="ilce" />
+    <NavigationProperty Name="musteri" Relationship="Self.FK__musteri__ilID__3C69FB99" FromRole="il" ToRole="musteri" />
+    <NavigationProperty Name="restoran" Relationship="Self.FK__restoran__ilID__440B1D61" FromRole="il" ToRole="restoran" />
+  </EntityType>
+  <EntityType Name="ilce">
+    <Key>
+      <PropertyRef Name="ilceID" />
+    </Key>
+    <Property Name="ilceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ilID" Type="Int32" Nullable="false" />
+    <Property Name="ilceAdi" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="il" Relationship="Self.FK__ilce__ilID__38996AB5" FromRole="ilce" ToRole="il" />
+    <NavigationProperty Name="musteri" Relationship="Self.FK__musteri__ilceID__3D5E1FD2" FromRole="ilce" ToRole="musteri" />
+    <NavigationProperty Name="restoran" Relationship="Self.FK__restoran__ilceID__44FF419A" FromRole="ilce" ToRole="restoran" />
+  </EntityType>
+  <EntityType Name="kampanya">
+    <Key>
+      <PropertyRef Name="kampanyaID" />
+    </Key>
+    <Property Name="kampanyaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="urunID" Type="Int32" Nullable="false" />
+    <Property Name="kampanyaYuzdesi" Type="Int32" Nullable="false" />
+    <Property Name="aktif" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="urunler" Relationship="Self.FK__kampanya__urunID__693CA210" FromRole="kampanya" ToRole="urunler" />
+  </EntityType>
+  <EntityType Name="kategoriler">
+    <Key>
+      <PropertyRef Name="kategoriID" />
+    </Key>
+    <Property Name="kategoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kategoriAdi" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="urunler" Relationship="Self.FK__urunler__kategor__5DCAEF64" FromRole="kategoriler" ToRole="urunler" />
+  </EntityType>
+  <EntityType Name="musteri">
+    <Key>
+      <PropertyRef Name="musteriID" />
+    </Key>
+    <Property Name="musteriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ad" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="soyad" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sifre" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="eposta" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ilID" Type="Int32" Nullable="false" />
+    <Property Name="ilceID" Type="Int32" Nullable="false" />
+    <Property Name="telNo" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="silindi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="il" Relationship="Self.FK__musteri__ilID__3C69FB99" FromRole="musteri" ToRole="il" />
+    <NavigationProperty Name="ilce" Relationship="Self.FK__musteri__ilceID__3D5E1FD2" FromRole="musteri" ToRole="ilce" />
+    <NavigationProperty Name="siparisler" Relationship="Self.FK__siparisle__muste__4E88ABD4" FromRole="musteri" ToRole="siparisler" />
+  </EntityType>
+  <EntityType Name="personel">
+    <Key>
+      <PropertyRef Name="personelID" />
+    </Key>
+    <Property Name="personelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ad" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="soyad" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="eposta" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sifre" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="silindi" Type="Boolean" Nullable="false" />
+    <Property Name="restoranID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="restoran" Relationship="Self.FK__personel__restor__49C3F6B7" FromRole="personel" ToRole="restoran" />
+  </EntityType>
+  <EntityType Name="restoran">
+    <Key>
+      <PropertyRef Name="restoranID" />
+    </Key>
+    <Property Name="restoranID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="restoranAdi" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sirketID" Type="Int32" Nullable="false" />
+    <Property Name="ilID" Type="Int32" Nullable="false" />
+    <Property Name="ilceID" Type="Int32" Nullable="false" />
+    <Property Name="silindi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="il" Relationship="Self.FK__restoran__ilID__440B1D61" FromRole="restoran" ToRole="il" />
+    <NavigationProperty Name="ilce" Relationship="Self.FK__restoran__ilceID__44FF419A" FromRole="restoran" ToRole="ilce" />
+    <NavigationProperty Name="personel" Relationship="Self.FK__personel__restor__49C3F6B7" FromRole="restoran" ToRole="personel" />
+    <NavigationProperty Name="sirket" Relationship="Self.FK__restoran__sirket__45F365D3" FromRole="restoran" ToRole="sirket" />
+    <NavigationProperty Name="urunler" Relationship="Self.FK__urunler__restora__5CD6CB2B" FromRole="restoran" ToRole="urunler" />
+  </EntityType>
+  <EntityType Name="siparisler">
+    <Key>
+      <PropertyRef Name="siparisID" />
+    </Key>
+    <Property Name="siparisID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="musteriID" Type="Int32" Nullable="false" />
+    <Property Name="tarih" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="urunId" Type="Int32" Nullable="false" />
+    <Property Name="tamamlandi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="musteri" Relationship="Self.FK__siparisle__muste__4E88ABD4" FromRole="siparisler" ToRole="musteri" />
+    <NavigationProperty Name="urunler" Relationship="Self.FK_urunID" FromRole="siparisler" ToRole="urunler" />
+  </EntityType>
+  <EntityType Name="sirket">
+    <Key>
+      <PropertyRef Name="sirketID" />
+    </Key>
+    <Property Name="sirketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sirketAdi" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="silindi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="restoran" Relationship="Self.FK__restoran__sirket__45F365D3" FromRole="sirket" ToRole="restoran" />
+  </EntityType>
+  <EntityType Name="urunler">
+    <Key>
+      <PropertyRef Name="urunID" />
+    </Key>
+    <Property Name="urunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="restoranID" Type="Int32" Nullable="false" />
+    <Property Name="urunAdi" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fiyat" Type="Double" Nullable="false" />
+    <Property Name="kategoriID" Type="Int32" Nullable="false" />
+    <Property Name="silindi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="kampanya" Relationship="Self.FK__kampanya__urunID__693CA210" FromRole="urunler" ToRole="kampanya" />
+    <NavigationProperty Name="kategoriler" Relationship="Self.FK__urunler__kategor__5DCAEF64" FromRole="urunler" ToRole="kategoriler" />
+    <NavigationProperty Name="restoran" Relationship="Self.FK__urunler__restora__5CD6CB2B" FromRole="urunler" ToRole="restoran" />
+    <NavigationProperty Name="siparisler" Relationship="Self.FK_urunID" FromRole="urunler" ToRole="siparisler" />
+  </EntityType>
+  <EntityType Name="restoranGetir">
+    <Key>
+      <PropertyRef Name="restoranID" />
+      <PropertyRef Name="restoranAdi" />
+      <PropertyRef Name="sirketID" />
+      <PropertyRef Name="ilID" />
+      <PropertyRef Name="ilceID" />
+      <PropertyRef Name="silindi" />
+      <PropertyRef Name="ilAdi" />
+      <PropertyRef Name="ilceAdi" />
+      <PropertyRef Name="sirketAdi" />
+    </Key>
+    <Property Name="restoranID" Type="Int32" Nullable="false" />
+    <Property Name="restoranAdi" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sirketID" Type="Int32" Nullable="false" />
+    <Property Name="ilID" Type="Int32" Nullable="false" />
+    <Property Name="ilceID" Type="Int32" Nullable="false" />
+    <Property Name="silindi" Type="Boolean" Nullable="false" />
+    <Property Name="ilAdi" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ilceAdi" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sirketAdi" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="urunGetir">
+    <Key>
+      <PropertyRef Name="urunID" />
+      <PropertyRef Name="restoranID" />
+      <PropertyRef Name="urunAdi" />
+      <PropertyRef Name="fiyat" />
+      <PropertyRef Name="kategoriID" />
+      <PropertyRef Name="silindi" />
+      <PropertyRef Name="kategoriAdi" />
+    </Key>
+    <Property Name="kampanyaYuzdesi" Type="Int32" />
+    <Property Name="urunID" Type="Int32" Nullable="false" />
+    <Property Name="restoranID" Type="Int32" Nullable="false" />
+    <Property Name="urunAdi" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fiyat" Type="Double" Nullable="false" />
+    <Property Name="kategoriID" Type="Int32" Nullable="false" />
+    <Property Name="silindi" Type="Boolean" Nullable="false" />
+    <Property Name="kategoriAdi" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="urunGetir2">
+    <Key>
+      <PropertyRef Name="urunID" />
+      <PropertyRef Name="restoranID" />
+      <PropertyRef Name="urunAdi" />
+      <PropertyRef Name="fiyat" />
+      <PropertyRef Name="kategoriID" />
+      <PropertyRef Name="silindi" />
+      <PropertyRef Name="kategoriAdi" />
+    </Key>
+    <Property Name="kampanyaYuzdesi" Type="Int32" />
+    <Property Name="kampanyaID" Type="Int32" />
+    <Property Name="urunID" Type="Int32" Nullable="false" />
+    <Property Name="restoranID" Type="Int32" Nullable="false" />
+    <Property Name="urunAdi" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fiyat" Type="Double" Nullable="false" />
+    <Property Name="kategoriID" Type="Int32" Nullable="false" />
+    <Property Name="silindi" Type="Boolean" Nullable="false" />
+    <Property Name="kategoriAdi" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__ilce__ilID__38996AB5">
+    <End Role="il" Type="Self.il" Multiplicity="1" />
+    <End Role="ilce" Type="Self.ilce" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="il">
+        <PropertyRef Name="ilID" />
+      </Principal>
+      <Dependent Role="ilce">
+        <PropertyRef Name="ilID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__musteri__ilID__3C69FB99">
+    <End Role="il" Type="Self.il" Multiplicity="1" />
+    <End Role="musteri" Type="Self.musteri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="il">
+        <PropertyRef Name="ilID" />
+      </Principal>
+      <Dependent Role="musteri">
+        <PropertyRef Name="ilID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__restoran__ilID__440B1D61">
+    <End Role="il" Type="Self.il" Multiplicity="1" />
+    <End Role="restoran" Type="Self.restoran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="il">
+        <PropertyRef Name="ilID" />
+      </Principal>
+      <Dependent Role="restoran">
+        <PropertyRef Name="ilID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__musteri__ilceID__3D5E1FD2">
+    <End Role="ilce" Type="Self.ilce" Multiplicity="1" />
+    <End Role="musteri" Type="Self.musteri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ilce">
+        <PropertyRef Name="ilceID" />
+      </Principal>
+      <Dependent Role="musteri">
+        <PropertyRef Name="ilceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__restoran__ilceID__44FF419A">
+    <End Role="ilce" Type="Self.ilce" Multiplicity="1" />
+    <End Role="restoran" Type="Self.restoran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ilce">
+        <PropertyRef Name="ilceID" />
+      </Principal>
+      <Dependent Role="restoran">
+        <PropertyRef Name="ilceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__kampanya__urunID__693CA210">
+    <End Role="urunler" Type="Self.urunler" Multiplicity="1" />
+    <End Role="kampanya" Type="Self.kampanya" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="urunler">
+        <PropertyRef Name="urunID" />
+      </Principal>
+      <Dependent Role="kampanya">
+        <PropertyRef Name="urunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__urunler__kategor__5DCAEF64">
+    <End Role="kategoriler" Type="Self.kategoriler" Multiplicity="1" />
+    <End Role="urunler" Type="Self.urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kategoriler">
+        <PropertyRef Name="kategoriID" />
+      </Principal>
+      <Dependent Role="urunler">
+        <PropertyRef Name="kategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__siparisle__muste__4E88ABD4">
+    <End Role="musteri" Type="Self.musteri" Multiplicity="1" />
+    <End Role="siparisler" Type="Self.siparisler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="musteri">
+        <PropertyRef Name="musteriID" />
+      </Principal>
+      <Dependent Role="siparisler">
+        <PropertyRef Name="musteriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__personel__restor__49C3F6B7">
+    <End Role="restoran" Type="Self.restoran" Multiplicity="1" />
+    <End Role="personel" Type="Self.personel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="restoran">
+        <PropertyRef Name="restoranID" />
+      </Principal>
+      <Dependent Role="personel">
+        <PropertyRef Name="restoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__restoran__sirket__45F365D3">
+    <End Role="sirket" Type="Self.sirket" Multiplicity="1" />
+    <End Role="restoran" Type="Self.restoran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sirket">
+        <PropertyRef Name="sirketID" />
+      </Principal>
+      <Dependent Role="restoran">
+        <PropertyRef Name="sirketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__urunler__restora__5CD6CB2B">
+    <End Role="restoran" Type="Self.restoran" Multiplicity="1" />
+    <End Role="urunler" Type="Self.urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="restoran">
+        <PropertyRef Name="restoranID" />
+      </Principal>
+      <Dependent Role="urunler">
+        <PropertyRef Name="restoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_urunID">
+    <End Role="urunler" Type="Self.urunler" Multiplicity="1" />
+    <End Role="siparisler" Type="Self.siparisler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="urunler">
+        <PropertyRef Name="urunID" />
+      </Principal>
+      <Dependent Role="siparisler">
+        <PropertyRef Name="urunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="YemekProjeEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="adminler" EntityType="Self.adminler" />
+    <EntitySet Name="il" EntityType="Self.il" />
+    <EntitySet Name="ilce" EntityType="Self.ilce" />
+    <EntitySet Name="kampanya" EntityType="Self.kampanya" />
+    <EntitySet Name="kategoriler" EntityType="Self.kategoriler" />
+    <EntitySet Name="musteri" EntityType="Self.musteri" />
+    <EntitySet Name="personel" EntityType="Self.personel" />
+    <EntitySet Name="restoran" EntityType="Self.restoran" />
+    <EntitySet Name="siparisler" EntityType="Self.siparisler" />
+    <EntitySet Name="sirket" EntityType="Self.sirket" />
+    <EntitySet Name="urunler" EntityType="Self.urunler" />
+    <EntitySet Name="restoranGetir" EntityType="Self.restoranGetir" />
+    <EntitySet Name="urunGetir" EntityType="Self.urunGetir" />
+    <EntitySet Name="urunGetir2" EntityType="Self.urunGetir2" />
+    <AssociationSet Name="FK__ilce__ilID__38996AB5" Association="Self.FK__ilce__ilID__38996AB5">
+      <End Role="il" EntitySet="il" />
+      <End Role="ilce" EntitySet="ilce" />
+    </AssociationSet>
+    <AssociationSet Name="FK__musteri__ilID__3C69FB99" Association="Self.FK__musteri__ilID__3C69FB99">
+      <End Role="il" EntitySet="il" />
+      <End Role="musteri" EntitySet="musteri" />
+    </AssociationSet>
+    <AssociationSet Name="FK__restoran__ilID__440B1D61" Association="Self.FK__restoran__ilID__440B1D61">
+      <End Role="il" EntitySet="il" />
+      <End Role="restoran" EntitySet="restoran" />
+    </AssociationSet>
+    <AssociationSet Name="FK__musteri__ilceID__3D5E1FD2" Association="Self.FK__musteri__ilceID__3D5E1FD2">
+      <End Role="ilce" EntitySet="ilce" />
+      <End Role="musteri" EntitySet="musteri" />
+    </AssociationSet>
+    <AssociationSet Name="FK__restoran__ilceID__44FF419A" Association="Self.FK__restoran__ilceID__44FF419A">
+      <End Role="ilce" EntitySet="ilce" />
+      <End Role="restoran" EntitySet="restoran" />
+    </AssociationSet>
+    <AssociationSet Name="FK__kampanya__urunID__693CA210" Association="Self.FK__kampanya__urunID__693CA210">
+      <End Role="urunler" EntitySet="urunler" />
+      <End Role="kampanya" EntitySet="kampanya" />
+    </AssociationSet>
+    <AssociationSet Name="FK__urunler__kategor__5DCAEF64" Association="Self.FK__urunler__kategor__5DCAEF64">
+      <End Role="kategoriler" EntitySet="kategoriler" />
+      <End Role="urunler" EntitySet="urunler" />
+    </AssociationSet>
+    <AssociationSet Name="FK__siparisle__muste__4E88ABD4" Association="Self.FK__siparisle__muste__4E88ABD4">
+      <End Role="musteri" EntitySet="musteri" />
+      <End Role="siparisler" EntitySet="siparisler" />
+    </AssociationSet>
+    <AssociationSet Name="FK__personel__restor__49C3F6B7" Association="Self.FK__personel__restor__49C3F6B7">
+      <End Role="restoran" EntitySet="restoran" />
+      <End Role="personel" EntitySet="personel" />
+    </AssociationSet>
+    <AssociationSet Name="FK__restoran__sirket__45F365D3" Association="Self.FK__restoran__sirket__45F365D3">
+      <End Role="sirket" EntitySet="sirket" />
+      <End Role="restoran" EntitySet="restoran" />
+    </AssociationSet>
+    <AssociationSet Name="FK__urunler__restora__5CD6CB2B" Association="Self.FK__urunler__restora__5CD6CB2B">
+      <End Role="restoran" EntitySet="restoran" />
+      <End Role="urunler" EntitySet="urunler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_urunID" Association="Self.FK_urunID">
+      <End Role="urunler" EntitySet="urunler" />
+      <End Role="siparisler" EntitySet="siparisler" />
+    </AssociationSet>
+    <EntitySet Name="siparisGetir" EntityType="YemekProjeModel.siparisGetir" />
+  </EntityContainer>
+  <EntityType Name="siparisGetir">
+    <Key>
+      <PropertyRef Name="ad" />
+      <PropertyRef Name="soyad" />
+      <PropertyRef Name="siparisID" />
+      <PropertyRef Name="musteriID" />
+      <PropertyRef Name="tarih" />
+      <PropertyRef Name="tamamlandi" />
+      <PropertyRef Name="urunID" />
+      <PropertyRef Name="restoranID" />
+      <PropertyRef Name="urunAdi" />
+      <PropertyRef Name="fiyat" />
+      <PropertyRef Name="kategoriID" />
+      <PropertyRef Name="silindi" />
+    </Key>
+    <Property Name="ad" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="soyad" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="siparisID" Type="Int32" Nullable="false" />
+    <Property Name="musteriID" Type="Int32" Nullable="false" />
+    <Property Name="tarih" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="tamamlandi" Type="Boolean" Nullable="false" />
+    <Property Name="urunID" Type="Int32" Nullable="false" />
+    <Property Name="restoranID" Type="Int32" Nullable="false" />
+    <Property Name="urunAdi" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="fiyat" Type="Double" Nullable="false" />
+    <Property Name="kategoriID" Type="Int32" Nullable="false" />
+    <Property Name="silindi" Type="Boolean" Nullable="false" />
+  </EntityType>
+</Schema>

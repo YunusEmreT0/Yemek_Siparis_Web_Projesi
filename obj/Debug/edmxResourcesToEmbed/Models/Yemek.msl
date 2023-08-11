@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="YemekProjeModelStoreContainer" CdmEntityContainer="YemekProjeEntities1">
+    <EntitySetMapping Name="adminler">
+      <EntityTypeMapping TypeName="YemekProjeModel.adminler">
+        <MappingFragment StoreEntitySet="adminler">
+          <ScalarProperty Name="adminID" ColumnName="adminID" />
+          <ScalarProperty Name="ad" ColumnName="ad" />
+          <ScalarProperty Name="soyad" ColumnName="soyad" />
+          <ScalarProperty Name="eposta" ColumnName="eposta" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="il">
+      <EntityTypeMapping TypeName="YemekProjeModel.il">
+        <MappingFragment StoreEntitySet="il">
+          <ScalarProperty Name="ilID" ColumnName="ilID" />
+          <ScalarProperty Name="ilAdi" ColumnName="ilAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ilce">
+      <EntityTypeMapping TypeName="YemekProjeModel.ilce">
+        <MappingFragment StoreEntitySet="ilce">
+          <ScalarProperty Name="ilceID" ColumnName="ilceID" />
+          <ScalarProperty Name="ilID" ColumnName="ilID" />
+          <ScalarProperty Name="ilceAdi" ColumnName="ilceAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kampanya">
+      <EntityTypeMapping TypeName="YemekProjeModel.kampanya">
+        <MappingFragment StoreEntitySet="kampanya">
+          <ScalarProperty Name="kampanyaID" ColumnName="kampanyaID" />
+          <ScalarProperty Name="urunID" ColumnName="urunID" />
+          <ScalarProperty Name="kampanyaYuzdesi" ColumnName="kampanyaYuzdesi" />
+          <ScalarProperty Name="aktif" ColumnName="aktif" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kategoriler">
+      <EntityTypeMapping TypeName="YemekProjeModel.kategoriler">
+        <MappingFragment StoreEntitySet="kategoriler">
+          <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+          <ScalarProperty Name="kategoriAdi" ColumnName="kategoriAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="musteri">
+      <EntityTypeMapping TypeName="YemekProjeModel.musteri">
+        <MappingFragment StoreEntitySet="musteri">
+          <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+          <ScalarProperty Name="ad" ColumnName="ad" />
+          <ScalarProperty Name="soyad" ColumnName="soyad" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+          <ScalarProperty Name="eposta" ColumnName="eposta" />
+          <ScalarProperty Name="ilID" ColumnName="ilID" />
+          <ScalarProperty Name="ilceID" ColumnName="ilceID" />
+          <ScalarProperty Name="telNo" ColumnName="telNo" />
+          <ScalarProperty Name="silindi" ColumnName="silindi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="personel">
+      <EntityTypeMapping TypeName="YemekProjeModel.personel">
+        <MappingFragment StoreEntitySet="personel">
+          <ScalarProperty Name="personelID" ColumnName="personelID" />
+          <ScalarProperty Name="ad" ColumnName="ad" />
+          <ScalarProperty Name="soyad" ColumnName="soyad" />
+          <ScalarProperty Name="eposta" ColumnName="eposta" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+          <ScalarProperty Name="silindi" ColumnName="silindi" />
+          <ScalarProperty Name="restoranID" ColumnName="restoranID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="restoran">
+      <EntityTypeMapping TypeName="YemekProjeModel.restoran">
+        <MappingFragment StoreEntitySet="restoran">
+          <ScalarProperty Name="restoranID" ColumnName="restoranID" />
+          <ScalarProperty Name="restoranAdi" ColumnName="restoranAdi" />
+          <ScalarProperty Name="sirketID" ColumnName="sirketID" />
+          <ScalarProperty Name="ilID" ColumnName="ilID" />
+          <ScalarProperty Name="ilceID" ColumnName="ilceID" />
+          <ScalarProperty Name="silindi" ColumnName="silindi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="siparisler">
+      <EntityTypeMapping TypeName="YemekProjeModel.siparisler">
+        <MappingFragment StoreEntitySet="siparisler">
+          <ScalarProperty Name="siparisID" ColumnName="siparisID" />
+          <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+          <ScalarProperty Name="tarih" ColumnName="tarih" />
+          <ScalarProperty Name="urunId" ColumnName="urunId" />
+          <ScalarProperty Name="tamamlandi" ColumnName="tamamlandi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sirket">
+      <EntityTypeMapping TypeName="YemekProjeModel.sirket">
+        <MappingFragment StoreEntitySet="sirket">
+          <ScalarProperty Name="sirketID" ColumnName="sirketID" />
+          <ScalarProperty Name="sirketAdi" ColumnName="sirketAdi" />
+          <ScalarProperty Name="silindi" ColumnName="silindi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="urunler">
+      <EntityTypeMapping TypeName="YemekProjeModel.urunler">
+        <MappingFragment StoreEntitySet="urunler">
+          <ScalarProperty Name="urunID" ColumnName="urunID" />
+          <ScalarProperty Name="restoranID" ColumnName="restoranID" />
+          <ScalarProperty Name="urunAdi" ColumnName="urunAdi" />
+          <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+          <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+          <ScalarProperty Name="silindi" ColumnName="silindi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="restoranGetir">
+      <EntityTypeMapping TypeName="YemekProjeModel.restoranGetir">
+        <MappingFragment StoreEntitySet="restoranGetir">
+          <ScalarProperty Name="restoranID" ColumnName="restoranID" />
+          <ScalarProperty Name="restoranAdi" ColumnName="restoranAdi" />
+          <ScalarProperty Name="sirketID" ColumnName="sirketID" />
+          <ScalarProperty Name="ilID" ColumnName="ilID" />
+          <ScalarProperty Name="ilceID" ColumnName="ilceID" />
+          <ScalarProperty Name="silindi" ColumnName="silindi" />
+          <ScalarProperty Name="ilAdi" ColumnName="ilAdi" />
+          <ScalarProperty Name="ilceAdi" ColumnName="ilceAdi" />
+          <ScalarProperty Name="sirketAdi" ColumnName="sirketAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="urunGetir">
+      <EntityTypeMapping TypeName="YemekProjeModel.urunGetir">
+        <MappingFragment StoreEntitySet="urunGetir">
+          <ScalarProperty Name="kampanyaYuzdesi" ColumnName="kampanyaYuzdesi" />
+          <ScalarProperty Name="urunID" ColumnName="urunID" />
+          <ScalarProperty Name="restoranID" ColumnName="restoranID" />
+          <ScalarProperty Name="urunAdi" ColumnName="urunAdi" />
+          <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+          <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+          <ScalarProperty Name="silindi" ColumnName="silindi" />
+          <ScalarProperty Name="kategoriAdi" ColumnName="kategoriAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="urunGetir2">
+      <EntityTypeMapping TypeName="YemekProjeModel.urunGetir2">
+        <MappingFragment StoreEntitySet="urunGetir2">
+          <ScalarProperty Name="kampanyaYuzdesi" ColumnName="kampanyaYuzdesi" />
+          <ScalarProperty Name="kampanyaID" ColumnName="kampanyaID" />
+          <ScalarProperty Name="urunID" ColumnName="urunID" />
+          <ScalarProperty Name="restoranID" ColumnName="restoranID" />
+          <ScalarProperty Name="urunAdi" ColumnName="urunAdi" />
+          <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+          <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+          <ScalarProperty Name="silindi" ColumnName="silindi" />
+          <ScalarProperty Name="kategoriAdi" ColumnName="kategoriAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="siparisGetir">
+      <EntityTypeMapping TypeName="YemekProjeModel.siparisGetir">
+        <MappingFragment StoreEntitySet="siparisGetir">
+          <ScalarProperty Name="silindi" ColumnName="silindi" />
+          <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+          <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+          <ScalarProperty Name="urunAdi" ColumnName="urunAdi" />
+          <ScalarProperty Name="restoranID" ColumnName="restoranID" />
+          <ScalarProperty Name="urunID" ColumnName="urunID" />
+          <ScalarProperty Name="tamamlandi" ColumnName="tamamlandi" />
+          <ScalarProperty Name="tarih" ColumnName="tarih" />
+          <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+          <ScalarProperty Name="siparisID" ColumnName="siparisID" />
+          <ScalarProperty Name="soyad" ColumnName="soyad" />
+          <ScalarProperty Name="ad" ColumnName="ad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

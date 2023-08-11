@@ -1,0 +1,43 @@
+﻿@using YemekSiparisProje.Models
+@model restoran
+@{
+    ViewBag.Title = Model.restoranAdi;
+}
+<div class="text-center">
+    <h1>@Model.restoranAdi</h1>
+    <h3>Ürünler</h3>
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Kategori</th>
+                <th scope="col">Ürün Adı</th>
+                <th scope="col">Fiyat</th>
+                <th scope="col">Kampanya</th>
+                <th scope="col">Sepete Ekle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (urunGetir u in ViewBag.urun)
+            {
+                if (u.silindi == false)
+                {
+                    <tr>
+                        <td>@u.kategoriAdi</td>
+                        <td>@u.urunAdi</td>
+                        <td>@u.fiyat</td>
+                        @if (u.kampanyaYuzdesi == null)
+                        {
+                            <td> - </td>
+                        }
+                        else
+                        {
+                            <td>@u.kampanyaYuzdesi</td>
+                        }
+                        <td><a href="/Home/SatinAl/@u.urunID" class="btn btn-danger">Satın Al</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,91 @@
+﻿@using YemekSiparisProje.Models;
+@{
+    
+}
+
+<section id="menu" class="menu">
+    <div class="container" data-aos="fade-up">
+        <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
+            <div class="tab-pane fade active show" id="menu-breakfast">
+                <div class="tab-header text-center">
+                    <h3>Ürün Ekle/Güncelle</h3>
+                </div>
+                <div class="row gy-5">
+                    <div class="col-lg-6 mx-auto menu-item">
+                        @if (ViewBag.urun != null)
+                        {
+                            <form action="/Restoran/UrunGuncelle/" method="post">
+                                <div class="form-group">
+                                    <label for="ad">Ürün Adı</label>
+                                    <input type="text" value="@ViewBag.urun.urunAdi" class="form-control" name="urunAdi" id="ad">
+                                </div><br />
+                                <div class="form-group">
+                                    <label for="soyad">Fiyat</label>
+                                    <input type="number" step="0.01" value="@ViewBag.urun.fiyat" class="form-control" name="fiyat" id="soyad">
+                                </div><br />
+                                <div class="form-group">
+                                    <label for="ilID">Kategori</label>
+                                    <select class="form-control" id="ilID" name="kategoriID">
+                                        @foreach (kategoriler k in ViewBag.ktg)
+                                        {
+                                            if (k.kategoriID == ViewBag.urun.kategoriID)
+                                            {
+                                                <option value=@k.kategoriID selected>@k.kategoriAdi</option>
+                                            }
+                                            else
+                                            {
+                                                <option value=@k.kategoriID>@k.kategoriAdi</option>
+
+                                            }
+                                        }
+                                    </select>
+                                </div><br />
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" value=false id="silindi" name="silindi">
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" value=@ViewBag.restoranID id="ID" name="restoranID">
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" value=@ViewBag.urun.urunID id="UID" name="urunID">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Güncelle</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form action="/Restoran/UrunGuncelle/" method="post">
+                                <div class="form-group">
+                                    <label for="ad">Ürün Adı</label>
+                                    <input type="text" class="form-control" name="urunAdi" id="ad">
+                                </div><br />
+                                <div class="form-group">
+                                    <label for="soyad">Fiyat</label>
+                                    <input type="number" step="0.01" class="form-control" name="fiyat" id="soyad">
+                                </div><br />
+                                <div class="form-group">
+                                    <label for="ilID">Kategori</label>
+                                    <select class="form-control" id="ilID" name="kategoriID">
+                                        @foreach (kategoriler k in ViewBag.ktg)
+                                        {
+                                            <option value=@k.kategoriID>@k.kategoriAdi</option>
+                                        }
+                                    </select>
+                                </div><br />
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" value=false id="silindi" name="silindi">
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" value="@ViewBag.restoranID" id="ID" name="restoranID">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Güncelle</button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+                            

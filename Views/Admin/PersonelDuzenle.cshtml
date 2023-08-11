@@ -1,0 +1,88 @@
+﻿@using YemekSiparisProje.Models;
+@{
+    ViewBag.Title = "Personel Ekle/Düzenle";
+}
+
+<section id="menu" class="menu">
+    <div class="container" data-aos="fade-up">
+        <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
+            <div class="tab-pane fade active show" id="menu-breakfast">
+
+                @if (ViewBag.s != null)
+                {
+                    <div class="tab-header text-center">
+                        <h3>Personel ID : @ViewBag.s.personelID</h3>
+                    </div>
+                    <div class="row gy-5">
+                        <div class="col-lg-6 mx-auto menu-item">
+                            <form action="/Admin/PGuncelle/" method="post">
+                                <div class="form-group">
+                                    <label for="ad">İsim</label>
+                                    <input type="text" class="form-control" value="@ViewBag.s.ad" name="ad" id="ad">
+                                </div><br />
+                                <div class="form-group">
+                                    <label for="soyad">Soyisim</label>
+                                    <input type="text" class="form-control" value="@ViewBag.s.soyad" name="soyad" id="soyad">
+                                </div><br />
+                                <div class="form-group">
+                                    <label for="eposta">Eposta</label>
+                                    <input type="text" class="form-control" value="@ViewBag.s.eposta" name="eposta" id="eposta">
+                                </div><br />
+                                <div class="form-group">
+                                    <label for="sifre">Şifre</label>
+                                    <input type="text" class="form-control" value="@ViewBag.s.sifre" name="sifre" id="sifre">
+                                </div><br />
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" value=false id="silindi" name="silindi">
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" value=@ViewBag.s.personelID id="ID" name="personelID">
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" value=@ViewBag.s.restoranID id="rID" name="restoranID">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Güncelle</button>
+                            </form>
+                        </div><!-- Menu Item -->
+                    </div>
+                }
+                else
+                {
+                    <div class="tab-header text-center">
+                        <h3>Personel Ekle</h3>
+                    </div>
+                    <div class="row gy-5">
+                        <div class="col-lg-6 mx-auto menu-item">
+                            <form action="/Admin/PGuncelle/" method="post">
+                                <div class="form-group">
+                                    <label for="ad">İsim</label>
+                                    <input type="text" class="form-control" name="ad" id="ad">
+                                </div><br />
+                                <div class="form-group">
+                                    <label for="soyad">Soyisim</label>
+                                    <input type="text" class="form-control" name="soyad" id="soyad">
+                                </div><br />
+                                <div class="form-group">
+                                    <label for="eposta">Eposta</label>
+                                    <input type="text" class="form-control" name="eposta" id="eposta">
+                                </div><br />
+                                <div class="form-group">
+                                    <label for="sifre">Şifre</label>
+                                    <input type="text" class="form-control" name="sifre" id="sifre">
+                                </div><br />
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" value=false id="silindi" name="silindi">
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" value=@ViewBag.rest id="rID" name="restoranID">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Ekle</button>
+                            </form>
+                        </div><!-- Menu Item -->
+                    </div>
+                }
+
+            </div><!-- End Breakfast Menu Content -->
+        </div>
+    </div>
+</section>

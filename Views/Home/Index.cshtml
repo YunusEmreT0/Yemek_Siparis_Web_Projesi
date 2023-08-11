@@ -1,0 +1,54 @@
+﻿@using YemekSiparisProje.Models
+@model List<restoranGetir>
+@{
+    ViewBag.Title = "Ana Sayfa";
+}
+
+
+<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
+
+    <div class="tab-pane fade active show" id="menu-starters">
+
+        <div class="tab-header text-center">
+            <h3>Restoranlar</h3>
+        </div>
+
+        <div class="row gy-5 text-center">
+            @foreach (restoranGetir r in Model)
+            {
+                if (r.silindi == false)
+                {
+                    <div class="col-lg-4 menu-item">
+
+                        <h4>@r.restoranAdi</h4>
+                        <p class="ingredients">
+                            @r.sirketAdi
+                        </p>
+                        <p class="price">
+                            @r.ilAdi - @r.ilceAdi
+                        </p>
+                        <a class="btn btn-danger" href="/Home/Restoran/@r.restoranID">Gözat</a>
+                    </div><!-- Menu Item -->
+                }
+            }
+
+        </div>
+    </div><!-- End Starter Menu Content -->
+</div>
+<br />
+<br />
+<div data-aos="fade-up" data-aos-delay="300">
+    <div class="tab-header text-center">
+        <h3>Bulunduğumuz İller</h3>
+    </div>
+
+    <div class="row gy-5 text-center">
+        @foreach (il i in ViewBag.il)
+        {
+            <div class="col-lg-3 menu-item">
+                <a class="btn" href="~/Home/Sehir/@i.ilID"><h4>@i.ilAdi</h4></a>
+            </div>
+        }
+
+    </div>
+</div>

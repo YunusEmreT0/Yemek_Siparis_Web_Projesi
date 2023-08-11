@@ -1,0 +1,71 @@
+﻿@using YemekSiparisProje.Models;
+@model List<sirket>
+@{
+    ViewBag.Title = "Şirketler";
+}
+
+<div class="text-center">
+    <h3>Şirketler</h3>
+    <a href="/Admin/SirketDuzenle/" class="btn btn-danger">Şirket Ekle</a>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Şirket ID</th>
+                <th scope="col">Şirket Adı</th>
+                <th scope="col">Düzenle</th>
+                <th scope="col">Restoranları Gör</th>
+                <th scope="col">Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (sirket u in Model)
+            {
+                <tr>
+                    <td>@u.sirketID</td>
+                    <td>@u.sirketAdi</td>
+                    <td>
+                        <form action="/Admin/SirketDuzenle/" method="post">
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" value="@u.sirketID" id="ID" name="srk">
+                            </div>
+                            <button type="submit" class="btn btn-danger">Düzenle</button>
+                        </form>
+                    </td>
+                    <td><a href="/Admin/Restoranlar/@u.sirketID" class="btn btn-danger">Restoanlar</a></td>
+                    <td><a href="#" class="btn btn-danger ssil" sirketID="@u.sirketID">Sil</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script>
+        $(".ssil").click(
+            function () {
+                var sonuc = confirm("Şirket silinsin mi?");
+                if (sonuc) {
+                    var kid = $(this).attr("sirketID");
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "/Admin/SirketSil/" + kid,
+                            success: function () {
+                                alert("Şirket başarıyla silindi!")
+                                window.location.replace("/Admin/Sirketler");
+                            },
+                            error: function () {
+                                alert("Şirket silinemedi..")
+                            }
+                        }
+                    );
+                }
+                else {
+                    alert("Silme işlemi iptal edildi!");
+                }
+            }
+        )
+    </script>
+}

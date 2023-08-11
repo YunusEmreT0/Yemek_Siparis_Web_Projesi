@@ -1,0 +1,62 @@
+﻿@using YemekSiparisProje.Models
+@model List<siparisGetir>
+@{
+    ViewBag.Title = "Siparişler";
+}
+
+<div class="text-center">
+    <h3>Tamamlanmamış Siparişler</h3>
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Müşteri Ad</th>
+                <th scope="col">Müşteri Soyad</th>
+                <th scope="col">Tarih</th>
+                <th scope="col">Ürün</th>
+                <th scope="col">Tamamla</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (siparisGetir u in Model)
+            {
+                <tr>
+                    <td>@u.ad</td>
+                    <td>@u.soyad</td>
+                    <td>@u.tarih</td>
+                    <td>@u.urunAdi</td>
+                    <td><a href="#" dt="@u.siparisID" class="btn btn-danger tamam">Tamamla</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script>
+        $(".tamam").click(
+            function () {
+                var sonuc = confirm("Sipariş tamamlansın mı?");
+                if (sonuc) {
+                    var kid = $(this).attr("dt");
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "/Restoran/SiparisTamamla/" + kid,
+                            success: function () {
+                                alert("Sipariş tamamlandı!")
+                                window.location.replace("/Restoran/Siparisler/");
+                            },
+                            error: function () {
+                                alert("Sipariş tamamlanamadı..")
+                            }
+                        }
+                    );
+                }
+            }
+        );
+    </script>
+}

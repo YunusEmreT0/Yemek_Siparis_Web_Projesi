@@ -1,0 +1,36 @@
+﻿@using YemekSiparisProje.Models
+@model il
+@{
+    ViewBag.Title = Model.ilAdi;
+}
+
+
+<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
+
+    <div class="tab-pane fade active show" id="menu-starters">
+
+        <div class="tab-header text-center">
+            <h3>@Model.ilAdi</h3>
+        </div>
+
+        <div class="row gy-5 text-center">
+            @foreach (restoranGetir r in ViewBag.restoran)
+            {
+                if (r.silindi == false)
+                {
+                    <div class="col-lg-4 menu-item">
+
+                        <h4>@r.restoranAdi</h4>
+                        <p class="ingredients">
+                            @r.sirketAdi
+                        </p>
+                        <p class="price">
+                            @r.ilceAdi
+                        </p>
+                        <a class="btn btn-danger" href="/Home/Restoran/@r.restoranID">Gözat</a>
+                    </div><!-- Menu Item -->
+                }
+            }
+        </div>
+    </div><!-- End Starter Menu Content -->
+</div>

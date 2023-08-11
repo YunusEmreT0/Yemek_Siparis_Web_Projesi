@@ -1,0 +1,72 @@
+﻿@using YemekSiparisProje.Models
+@model List<musteri>
+@{
+    ViewBag.Title = "Müşteriler";
+}
+
+<div class="text-center">
+    <h3>Müşteriler</h3>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">İsim</th>
+                <th scope="col">Soyisim</th>
+                <th scope="col">Eposta</th>
+                <th scope="col">Telefon Numarası</th>
+                <th scope="col">Düzenle</th>
+                <th scope="col">Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (musteri u in Model)
+            {
+                <tr>
+                    <td>@u.ad</td>
+                    <td>@u.soyad</td>
+                    <td>@u.eposta</td>
+                    <td>@u.telNo</td>
+                    <td>
+                        <form action="/Admin/MusteriDuzenle/" method="post">
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" value="@u.musteriID" id="ID" name="mst">
+                            </div>
+                            <button type="submit" class="btn btn-danger">Düzenle</button>
+                        </form>
+                    </td>
+                    <td><a href="#" class="btn btn-danger msil" musteriID="@u.musteriID">Sil</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script>
+        $(".msil").click(
+            function () {
+                var sonuc = confirm("Müşteri silinsin mi?");
+                if (sonuc) {
+                    var kid = $(this).attr("musteriID");
+                    $.ajax(
+                        {
+                            type: "post",
+                            url: "/Admin/MusteriSil/" + kid,
+                            success: function () {
+                                alert("Müşteri başarıyla silindi!")
+                                window.location.replace("/Admin/Musteriler");
+                            },
+                            error: function () {
+                                alert("Müşteri silinemedi..")
+                            }
+                        }
+                    );
+                }
+                else {
+                    alert("Silme iptal edildi!");
+                }
+            }
+        );
+    </script>
+}

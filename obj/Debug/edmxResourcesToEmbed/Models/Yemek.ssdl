@@ -1,0 +1,466 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="YemekProjeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="adminler">
+    <Key>
+      <PropertyRef Name="adminID" />
+    </Key>
+    <Property Name="adminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ad" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="soyad" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="eposta" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="sifre" Type="varchar" MaxLength="16" Nullable="false" />
+  </EntityType>
+  <EntityType Name="il">
+    <Key>
+      <PropertyRef Name="ilID" />
+    </Key>
+    <Property Name="ilID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ilAdi" Type="varchar" MaxLength="64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ilce">
+    <Key>
+      <PropertyRef Name="ilceID" />
+    </Key>
+    <Property Name="ilceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ilID" Type="int" Nullable="false" />
+    <Property Name="ilceAdi" Type="varchar" MaxLength="64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="kampanya">
+    <Key>
+      <PropertyRef Name="kampanyaID" />
+    </Key>
+    <Property Name="kampanyaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="urunID" Type="int" Nullable="false" />
+    <Property Name="kampanyaYuzdesi" Type="int" Nullable="false" />
+    <Property Name="aktif" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="kategoriler">
+    <Key>
+      <PropertyRef Name="kategoriID" />
+    </Key>
+    <Property Name="kategoriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kategoriAdi" Type="varchar" MaxLength="64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="musteri">
+    <Key>
+      <PropertyRef Name="musteriID" />
+    </Key>
+    <Property Name="musteriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ad" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="soyad" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="sifre" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="eposta" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="ilID" Type="int" Nullable="false" />
+    <Property Name="ilceID" Type="int" Nullable="false" />
+    <Property Name="telNo" Type="varchar" MaxLength="11" />
+    <Property Name="silindi" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="personel">
+    <Key>
+      <PropertyRef Name="personelID" />
+    </Key>
+    <Property Name="personelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ad" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="soyad" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="eposta" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="sifre" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="silindi" Type="bit" Nullable="false" />
+    <Property Name="restoranID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="restoran">
+    <Key>
+      <PropertyRef Name="restoranID" />
+    </Key>
+    <Property Name="restoranID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="restoranAdi" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="sirketID" Type="int" Nullable="false" />
+    <Property Name="ilID" Type="int" Nullable="false" />
+    <Property Name="ilceID" Type="int" Nullable="false" />
+    <Property Name="silindi" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="siparisler">
+    <Key>
+      <PropertyRef Name="siparisID" />
+    </Key>
+    <Property Name="siparisID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="musteriID" Type="int" Nullable="false" />
+    <Property Name="tarih" Type="datetime" Nullable="false" />
+    <Property Name="urunId" Type="int" Nullable="false" />
+    <Property Name="tamamlandi" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sirket">
+    <Key>
+      <PropertyRef Name="sirketID" />
+    </Key>
+    <Property Name="sirketID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sirketAdi" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="silindi" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="urunler">
+    <Key>
+      <PropertyRef Name="urunID" />
+    </Key>
+    <Property Name="urunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="restoranID" Type="int" Nullable="false" />
+    <Property Name="urunAdi" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="fiyat" Type="float" Nullable="false" />
+    <Property Name="kategoriID" Type="int" Nullable="false" />
+    <Property Name="silindi" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'YemekProje.dbo.restoranGetir' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="restoranGetir">
+    <Key>
+      <PropertyRef Name="restoranID" />
+      <PropertyRef Name="restoranAdi" />
+      <PropertyRef Name="sirketID" />
+      <PropertyRef Name="ilID" />
+      <PropertyRef Name="ilceID" />
+      <PropertyRef Name="silindi" />
+      <PropertyRef Name="ilAdi" />
+      <PropertyRef Name="ilceAdi" />
+      <PropertyRef Name="sirketAdi" />
+    </Key>
+    <Property Name="restoranID" Type="int" Nullable="false" />
+    <Property Name="restoranAdi" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="sirketID" Type="int" Nullable="false" />
+    <Property Name="ilID" Type="int" Nullable="false" />
+    <Property Name="ilceID" Type="int" Nullable="false" />
+    <Property Name="silindi" Type="bit" Nullable="false" />
+    <Property Name="ilAdi" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="ilceAdi" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="sirketAdi" Type="varchar" MaxLength="64" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'YemekProje.dbo.siparisGetir' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="siparisGetir">
+    <Key>
+      <PropertyRef Name="ad" />
+      <PropertyRef Name="soyad" />
+      <PropertyRef Name="siparisID" />
+      <PropertyRef Name="musteriID" />
+      <PropertyRef Name="tarih" />
+      <PropertyRef Name="tamamlandi" />
+      <PropertyRef Name="urunID" />
+      <PropertyRef Name="restoranID" />
+      <PropertyRef Name="urunAdi" />
+      <PropertyRef Name="fiyat" />
+      <PropertyRef Name="kategoriID" />
+      <PropertyRef Name="silindi" />
+    </Key>
+    <Property Name="ad" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="soyad" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="siparisID" Type="int" Nullable="false" />
+    <Property Name="musteriID" Type="int" Nullable="false" />
+    <Property Name="tarih" Type="datetime" Nullable="false" />
+    <Property Name="tamamlandi" Type="bit" Nullable="false" />
+    <Property Name="urunID" Type="int" Nullable="false" />
+    <Property Name="restoranID" Type="int" Nullable="false" />
+    <Property Name="urunAdi" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="fiyat" Type="float" Nullable="false" />
+    <Property Name="kategoriID" Type="int" Nullable="false" />
+    <Property Name="silindi" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'YemekProje.dbo.urunGetir' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="urunGetir">
+    <Key>
+      <PropertyRef Name="urunID" />
+      <PropertyRef Name="restoranID" />
+      <PropertyRef Name="urunAdi" />
+      <PropertyRef Name="fiyat" />
+      <PropertyRef Name="kategoriID" />
+      <PropertyRef Name="silindi" />
+      <PropertyRef Name="kategoriAdi" />
+    </Key>
+    <Property Name="kampanyaYuzdesi" Type="int" />
+    <Property Name="urunID" Type="int" Nullable="false" />
+    <Property Name="restoranID" Type="int" Nullable="false" />
+    <Property Name="urunAdi" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="fiyat" Type="float" Nullable="false" />
+    <Property Name="kategoriID" Type="int" Nullable="false" />
+    <Property Name="silindi" Type="bit" Nullable="false" />
+    <Property Name="kategoriAdi" Type="varchar" MaxLength="64" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'YemekProje.dbo.urunGetir2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="urunGetir2">
+    <Key>
+      <PropertyRef Name="urunID" />
+      <PropertyRef Name="restoranID" />
+      <PropertyRef Name="urunAdi" />
+      <PropertyRef Name="fiyat" />
+      <PropertyRef Name="kategoriID" />
+      <PropertyRef Name="silindi" />
+      <PropertyRef Name="kategoriAdi" />
+    </Key>
+    <Property Name="kampanyaYuzdesi" Type="int" />
+    <Property Name="kampanyaID" Type="int" />
+    <Property Name="urunID" Type="int" Nullable="false" />
+    <Property Name="restoranID" Type="int" Nullable="false" />
+    <Property Name="urunAdi" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="fiyat" Type="float" Nullable="false" />
+    <Property Name="kategoriID" Type="int" Nullable="false" />
+    <Property Name="silindi" Type="bit" Nullable="false" />
+    <Property Name="kategoriAdi" Type="varchar" MaxLength="64" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__ilce__ilID__38996AB5">
+    <End Role="il" Type="Self.il" Multiplicity="1" />
+    <End Role="ilce" Type="Self.ilce" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="il">
+        <PropertyRef Name="ilID" />
+      </Principal>
+      <Dependent Role="ilce">
+        <PropertyRef Name="ilID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__kampanya__urunID__693CA210">
+    <End Role="urunler" Type="Self.urunler" Multiplicity="1" />
+    <End Role="kampanya" Type="Self.kampanya" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="urunler">
+        <PropertyRef Name="urunID" />
+      </Principal>
+      <Dependent Role="kampanya">
+        <PropertyRef Name="urunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__musteri__ilceID__3D5E1FD2">
+    <End Role="ilce" Type="Self.ilce" Multiplicity="1" />
+    <End Role="musteri" Type="Self.musteri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ilce">
+        <PropertyRef Name="ilceID" />
+      </Principal>
+      <Dependent Role="musteri">
+        <PropertyRef Name="ilceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__musteri__ilID__3C69FB99">
+    <End Role="il" Type="Self.il" Multiplicity="1" />
+    <End Role="musteri" Type="Self.musteri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="il">
+        <PropertyRef Name="ilID" />
+      </Principal>
+      <Dependent Role="musteri">
+        <PropertyRef Name="ilID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__personel__restor__49C3F6B7">
+    <End Role="restoran" Type="Self.restoran" Multiplicity="1" />
+    <End Role="personel" Type="Self.personel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="restoran">
+        <PropertyRef Name="restoranID" />
+      </Principal>
+      <Dependent Role="personel">
+        <PropertyRef Name="restoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__restoran__ilceID__44FF419A">
+    <End Role="ilce" Type="Self.ilce" Multiplicity="1" />
+    <End Role="restoran" Type="Self.restoran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ilce">
+        <PropertyRef Name="ilceID" />
+      </Principal>
+      <Dependent Role="restoran">
+        <PropertyRef Name="ilceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__restoran__ilID__440B1D61">
+    <End Role="il" Type="Self.il" Multiplicity="1" />
+    <End Role="restoran" Type="Self.restoran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="il">
+        <PropertyRef Name="ilID" />
+      </Principal>
+      <Dependent Role="restoran">
+        <PropertyRef Name="ilID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__restoran__sirket__45F365D3">
+    <End Role="sirket" Type="Self.sirket" Multiplicity="1" />
+    <End Role="restoran" Type="Self.restoran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sirket">
+        <PropertyRef Name="sirketID" />
+      </Principal>
+      <Dependent Role="restoran">
+        <PropertyRef Name="sirketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__siparisle__muste__4E88ABD4">
+    <End Role="musteri" Type="Self.musteri" Multiplicity="1" />
+    <End Role="siparisler" Type="Self.siparisler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="musteri">
+        <PropertyRef Name="musteriID" />
+      </Principal>
+      <Dependent Role="siparisler">
+        <PropertyRef Name="musteriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__urunler__kategor__5DCAEF64">
+    <End Role="kategoriler" Type="Self.kategoriler" Multiplicity="1" />
+    <End Role="urunler" Type="Self.urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kategoriler">
+        <PropertyRef Name="kategoriID" />
+      </Principal>
+      <Dependent Role="urunler">
+        <PropertyRef Name="kategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__urunler__restora__5CD6CB2B">
+    <End Role="restoran" Type="Self.restoran" Multiplicity="1" />
+    <End Role="urunler" Type="Self.urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="restoran">
+        <PropertyRef Name="restoranID" />
+      </Principal>
+      <Dependent Role="urunler">
+        <PropertyRef Name="restoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_urunID">
+    <End Role="urunler" Type="Self.urunler" Multiplicity="1" />
+    <End Role="siparisler" Type="Self.siparisler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="urunler">
+        <PropertyRef Name="urunID" />
+      </Principal>
+      <Dependent Role="siparisler">
+        <PropertyRef Name="urunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="YemekProjeModelStoreContainer">
+    <EntitySet Name="adminler" EntityType="Self.adminler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="il" EntityType="Self.il" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ilce" EntityType="Self.ilce" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="kampanya" EntityType="Self.kampanya" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="kategoriler" EntityType="Self.kategoriler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="musteri" EntityType="Self.musteri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="personel" EntityType="Self.personel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="restoran" EntityType="Self.restoran" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="siparisler" EntityType="Self.siparisler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sirket" EntityType="Self.sirket" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="urunler" EntityType="Self.urunler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="restoranGetir" EntityType="Self.restoranGetir" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [restoranGetir].[restoranID] AS [restoranID], 
+    [restoranGetir].[restoranAdi] AS [restoranAdi], 
+    [restoranGetir].[sirketID] AS [sirketID], 
+    [restoranGetir].[ilID] AS [ilID], 
+    [restoranGetir].[ilceID] AS [ilceID], 
+    [restoranGetir].[silindi] AS [silindi], 
+    [restoranGetir].[ilAdi] AS [ilAdi], 
+    [restoranGetir].[ilceAdi] AS [ilceAdi], 
+    [restoranGetir].[sirketAdi] AS [sirketAdi]
+    FROM [dbo].[restoranGetir] AS [restoranGetir]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="siparisGetir" EntityType="Self.siparisGetir" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [siparisGetir].[ad] AS [ad], 
+    [siparisGetir].[soyad] AS [soyad], 
+    [siparisGetir].[siparisID] AS [siparisID], 
+    [siparisGetir].[musteriID] AS [musteriID], 
+    [siparisGetir].[tarih] AS [tarih], 
+    [siparisGetir].[tamamlandi] AS [tamamlandi], 
+    [siparisGetir].[urunID] AS [urunID], 
+    [siparisGetir].[restoranID] AS [restoranID], 
+    [siparisGetir].[urunAdi] AS [urunAdi], 
+    [siparisGetir].[fiyat] AS [fiyat], 
+    [siparisGetir].[kategoriID] AS [kategoriID], 
+    [siparisGetir].[silindi] AS [silindi]
+    FROM [dbo].[siparisGetir] AS [siparisGetir]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="urunGetir" EntityType="Self.urunGetir" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [urunGetir].[kampanyaYuzdesi] AS [kampanyaYuzdesi], 
+    [urunGetir].[urunID] AS [urunID], 
+    [urunGetir].[restoranID] AS [restoranID], 
+    [urunGetir].[urunAdi] AS [urunAdi], 
+    [urunGetir].[fiyat] AS [fiyat], 
+    [urunGetir].[kategoriID] AS [kategoriID], 
+    [urunGetir].[silindi] AS [silindi], 
+    [urunGetir].[kategoriAdi] AS [kategoriAdi]
+    FROM [dbo].[urunGetir] AS [urunGetir]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="urunGetir2" EntityType="Self.urunGetir2" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [urunGetir2].[kampanyaYuzdesi] AS [kampanyaYuzdesi], 
+    [urunGetir2].[kampanyaID] AS [kampanyaID], 
+    [urunGetir2].[urunID] AS [urunID], 
+    [urunGetir2].[restoranID] AS [restoranID], 
+    [urunGetir2].[urunAdi] AS [urunAdi], 
+    [urunGetir2].[fiyat] AS [fiyat], 
+    [urunGetir2].[kategoriID] AS [kategoriID], 
+    [urunGetir2].[silindi] AS [silindi], 
+    [urunGetir2].[kategoriAdi] AS [kategoriAdi]
+    FROM [dbo].[urunGetir2] AS [urunGetir2]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__ilce__ilID__38996AB5" Association="Self.FK__ilce__ilID__38996AB5">
+      <End Role="il" EntitySet="il" />
+      <End Role="ilce" EntitySet="ilce" />
+    </AssociationSet>
+    <AssociationSet Name="FK__kampanya__urunID__693CA210" Association="Self.FK__kampanya__urunID__693CA210">
+      <End Role="urunler" EntitySet="urunler" />
+      <End Role="kampanya" EntitySet="kampanya" />
+    </AssociationSet>
+    <AssociationSet Name="FK__musteri__ilceID__3D5E1FD2" Association="Self.FK__musteri__ilceID__3D5E1FD2">
+      <End Role="ilce" EntitySet="ilce" />
+      <End Role="musteri" EntitySet="musteri" />
+    </AssociationSet>
+    <AssociationSet Name="FK__musteri__ilID__3C69FB99" Association="Self.FK__musteri__ilID__3C69FB99">
+      <End Role="il" EntitySet="il" />
+      <End Role="musteri" EntitySet="musteri" />
+    </AssociationSet>
+    <AssociationSet Name="FK__personel__restor__49C3F6B7" Association="Self.FK__personel__restor__49C3F6B7">
+      <End Role="restoran" EntitySet="restoran" />
+      <End Role="personel" EntitySet="personel" />
+    </AssociationSet>
+    <AssociationSet Name="FK__restoran__ilceID__44FF419A" Association="Self.FK__restoran__ilceID__44FF419A">
+      <End Role="ilce" EntitySet="ilce" />
+      <End Role="restoran" EntitySet="restoran" />
+    </AssociationSet>
+    <AssociationSet Name="FK__restoran__ilID__440B1D61" Association="Self.FK__restoran__ilID__440B1D61">
+      <End Role="il" EntitySet="il" />
+      <End Role="restoran" EntitySet="restoran" />
+    </AssociationSet>
+    <AssociationSet Name="FK__restoran__sirket__45F365D3" Association="Self.FK__restoran__sirket__45F365D3">
+      <End Role="sirket" EntitySet="sirket" />
+      <End Role="restoran" EntitySet="restoran" />
+    </AssociationSet>
+    <AssociationSet Name="FK__siparisle__muste__4E88ABD4" Association="Self.FK__siparisle__muste__4E88ABD4">
+      <End Role="musteri" EntitySet="musteri" />
+      <End Role="siparisler" EntitySet="siparisler" />
+    </AssociationSet>
+    <AssociationSet Name="FK__urunler__kategor__5DCAEF64" Association="Self.FK__urunler__kategor__5DCAEF64">
+      <End Role="kategoriler" EntitySet="kategoriler" />
+      <End Role="urunler" EntitySet="urunler" />
+    </AssociationSet>
+    <AssociationSet Name="FK__urunler__restora__5CD6CB2B" Association="Self.FK__urunler__restora__5CD6CB2B">
+      <End Role="restoran" EntitySet="restoran" />
+      <End Role="urunler" EntitySet="urunler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_urunID" Association="Self.FK_urunID">
+      <End Role="urunler" EntitySet="urunler" />
+      <End Role="siparisler" EntitySet="siparisler" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

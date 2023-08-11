@@ -1,0 +1,116 @@
+﻿@using YemekSiparisProje.Models;
+@{
+    ViewBag.Title = "Ürünler";
+}
+<div class="text-center">
+    <h3>Ürünler </h3>
+    <a href="/Restoran/UrunEkle/" class="btn btn-danger">Ürün Ekle</a>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Kategori</th>
+                <th scope="col">Ürün Adı</th>
+                <th scope="col">Fiyat</th>
+                <th scope="col">Kampanya</th>
+                <th scope="col">Kampanya Ekle/Sil</th>
+                <th scope="col">Düzenle</th>
+                <th scope="col">Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (urunGetir2 u in ViewBag.u)
+            {
+                if (u.silindi == false)
+                {
+                    <tr>
+                        <td>@u.kategoriAdi</td>
+                        <td>@u.urunAdi</td>
+                        <td>@u.fiyat</td>
+                        @if (u.kampanyaYuzdesi == null)
+                        {
+                            <td> - </td>
+                            <td><a href="/Restoran/Kampanya/@u.urunID" class="btn btn-danger">Kampanya Ekle</a></td>
+                        }
+                        else
+                        {
+                            <td>
+                                @u.kampanyaYuzdesi
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-danger kmpSil" data-kmpID="@u.kampanyaID">Kampanya Sil</a>
+                            </td>
+                        }
+                        <td>
+                            <form action="/Restoran/UrunEkle/" method="post">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" value=@u.urunID id="ID" name="u">
+                                </div>
+                                <button type="submit" class="btn btn-danger">Düzenle</button>
+                            </form>
+                        </td>
+                        <td><a href="#" uid="@u.urunID" class="btn btn-danger usil">Sil</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script>
+        $(".kmpSil").click(
+            function () {
+                var sonuc = confirm("Kampanya silinsin mi?");
+                if (sonuc) {
+                    var kid = $(this).attr("data-kmpId");
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "/Restoran/KampanyaSil/" + kid,
+                            success: function () {
+                                alert("Kampanya başarıyla silindi!")
+                                window.location.replace("/Restoran/Urunler");
+                            },
+                            error: function () {
+                                alert("Kategori silinemedi..")
+                            }
+                        }
+                    );
+                }
+                else {
+                    alert("Silme İptal Edildi");
+                }
+            }
+        );
+    </script>
+
+    <script>
+        $(".usil").click(
+            function () {
+                var sonuc = confirm("Ürün silinsin mi?");
+                if (sonuc) {
+                    var kid = $(this).attr("uid");
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "/Restoran/UrunSil/" + kid,
+                            success: function () {
+                                alert("Ürün başarıyla silindi!")
+                                window.location.replace("/Restoran/Urunler");
+                            },
+                            error: function () {
+                                alert("Ürün silinemedi..")
+                            }
+                        }
+                    );
+                }
+                else {
+                    alert("Silme İptal Edildi");
+                }
+            }
+        );
+    </script>
+}
+

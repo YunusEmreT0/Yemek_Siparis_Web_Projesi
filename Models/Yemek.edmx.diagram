@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="79f9d6bb947343b389e52a48e5635f23" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="YemekProjeModel.adminler" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YemekProjeModel.il" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="YemekProjeModel.ilce" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="YemekProjeModel.kampanya" Width="1.5" PointX="15.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="YemekProjeModel.kategoriler" Width="1.5" PointX="11.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="YemekProjeModel.musteri" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="YemekProjeModel.personel" Width="1.5" PointX="10.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="YemekProjeModel.restoran" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="YemekProjeModel.siparisler" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="YemekProjeModel.sirket" Width="1.5" PointX="6" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="YemekProjeModel.urunler" Width="1.5" PointX="13.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="YemekProjeModel.restoranGetir" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YemekProjeModel.urunGetir" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YemekProjeModel.urunGetir2" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="YemekProjeModel.FK__ilce__ilID__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="YemekProjeModel.FK__musteri__ilID__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="YemekProjeModel.FK__restoran__ilID__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="YemekProjeModel.FK__musteri__ilceID__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="YemekProjeModel.FK__restoran__ilceID__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="YemekProjeModel.FK__kampanya__urunID__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="YemekProjeModel.FK__urunler__kategor__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="YemekProjeModel.FK__siparisle__muste__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="YemekProjeModel.FK__personel__restor__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="YemekProjeModel.FK__restoran__sirket__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="YemekProjeModel.FK__urunler__restora__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="YemekProjeModel.FK_urunID" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="YemekProjeModel.siparisGetir" Width="1.5" PointX="8.375" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

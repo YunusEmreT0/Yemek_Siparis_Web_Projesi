@@ -1,0 +1,73 @@
+﻿@using YemekSiparisProje.Models;
+@model List<personel>
+@{
+    ViewBag.Title = "Personeller";
+}
+
+<div class="text-center">
+    <h3>@ViewBag.rest.restoranAdi Personelleri</h3>
+    <a href="/Admin/PersonelDuzenle/@ViewBag.rest.restoranID" class="btn btn-danger">Personel Ekle</a>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Personel ID</th>
+                <th scope="col">Personel Adı</th>
+                <th scope="col">Personel Soyadı</th>
+                <th scope="col">Eposta</th>
+                <th scope="col">Düzenle</th>
+                <th scope="col">Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (personel u in Model)
+            {
+                <tr>
+                    <td>@u.personelID</td>
+                    <td>@u.ad</td>
+                    <td>@u.soyad</td>
+                    <td>@u.eposta</td>
+                    <td>
+                        <form action="/Admin/PersonelDuzenle/" method="post">
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" value="@u.personelID.ToString()" id="ID" name="srk">
+                            </div>
+                            <button type="submit" class="btn btn-danger">Düzenle</button>
+                        </form>
+                    </td>
+                    <td><a href="#" class="btn btn-danger ssil" sirketID="@u.personelID">Sil</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script>
+        $(".ssil").click(
+            function () {
+                var sonuc = confirm("Personel silinsin mi?");
+                if (sonuc) {
+                    var kid = $(this).attr("sirketID");
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "/Admin/PersonelSil/" + kid,
+                            success: function () {
+                                alert("Personel başarıyla silindi!")
+                                window.location.replace("/Admin/Personeller/@ViewBag.rest.restoranID");
+                            },
+                            error: function () {
+                                alert("Personel silinemedi..")
+                            }
+                        }
+                    );
+                }
+                else {
+                    alert("Silme işlemi iptal edildi!");
+                }
+            }
+        )
+    </script>
+}

@@ -1,0 +1,113 @@
+﻿@using YemekSiparisProje.Models
+@{
+    ViewBag.Title = "Giriş";
+}
+
+<section id="menu" class="menu">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+            <h2>Seçenekler</h2>
+        </div>
+
+        <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
+
+            <li class="nav-item">
+                <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-starters">
+                    <h4>Üye Girişi</h4>
+                </a>
+            </li><!-- End tab nav item -->
+
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-breakfast">
+                    <h4>Üye Ol</h4>
+                </a><!-- End tab nav item -->
+
+        </ul>
+
+        <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
+
+            <div class="tab-pane fade active show" id="menu-starters">
+
+                <div class="tab-header text-center">
+                    <h3>Üye Girişi</h3>
+                </div>
+
+                <div class="row gy-5">
+
+                    <div class="col-lg-6 mx-auto menu-item">
+                        <form action="/Giris/Index" method="post">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Eposta</label>
+                                <input type="text" class="form-control" name="eposta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Eposta girin">
+                            </div><br />
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Şifre</label>
+                                <input type="password" class="form-control" name="sifre" id="exampleInputPassword1" placeholder="Şifre girin">
+                            </div><br />
+                            <p>@ViewBag.hata</p><br />
+                            <button type="submit" class="btn btn-primary">Giriş</button>
+                        </form>
+                    </div><!-- Menu Item -->
+                </div>
+            </div><!-- End Starter Menu Content -->
+
+            <div class="tab-pane fade" id="menu-breakfast">
+
+                <div class="tab-header text-center">
+                    <h3>Üye Ol</h3>
+                </div>
+
+                <div class="row gy-5">
+
+                    <div class="col-lg-6 mx-auto menu-item">
+                        <form action="/Giris/UyeOl" method="post">
+                            <div class="form-group">
+                                <label for="ad">İsim</label>
+                                <input type="text" class="form-control" name="ad" id="ad" placeholder="İsminizi girin">
+                            </div><br />
+                            <div class="form-group">
+                                <label for="soyad">Soyisim</label>
+                                <input type="text" class="form-control" name="soyad" id="soyad" placeholder="Soyisminizi girin">
+                            </div><br />
+                            <div class="form-group">
+                                <label for="telNo">Telefon Numarası</label>
+                                <input type="text" class="form-control" name="telNo" id="telNo" placeholder="Telefon numaranızı girin">
+                            </div><br />
+                            <div class="form-group">
+                                <label for="eposta">Eposta</label>
+                                <input type="text" class="form-control" name="eposta" id="eposta" placeholder="Epostanızı girin">
+                            </div><br />
+                            <div class="form-group">
+                                <label for="sifre">Şifre</label>
+                                <input type="password" class="form-control" name="sifre" id="sifre" placeholder="Şifrenizi girin">
+                            </div><br />
+                            <div class="form-group">
+                                <label for="ilID">İl</label>
+                                <select class="form-control" id="ilID" name="ilID">
+                                    @foreach (il i in ViewBag.il)
+                                    {
+                                        <option value=@i.ilID>@i.ilAdi</option>
+                                    }
+                                </select>
+                            </div><br />
+                            <div class="form-group">
+                                <label for="ilceID">İlçe</label>
+                                <select class="form-control" id="ilceID" name="ilceID">
+                                    @foreach (ilce i in ViewBag.ilce)
+                                    {
+                                        <option value=@i.ilceID>@i.ilceAdi</option>
+                                    }
+                                </select>
+                            </div><br />
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" value=false id="silindi" name="silindi">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Kayıt Ol</button>
+                        </form>
+                    </div><!-- Menu Item -->
+                </div>
+            </div><!-- End Breakfast Menu Content -->
+        </div>
+    </div>
+</section>

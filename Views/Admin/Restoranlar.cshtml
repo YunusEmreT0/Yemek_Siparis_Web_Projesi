@@ -1,0 +1,83 @@
+﻿@using YemekSiparisProje.Models
+@model List<restoranGetir>
+@{
+    ViewBag.Title = "Restoranlar";
+
+
+}
+
+<div class="text-center">
+    @if (Model.LongCount() != 0)
+    {
+        <h3>@Model[0].sirketAdi Restoranları</h3>
+
+}
+else
+            {
+                <h3>Restoran Yok</h3>
+            }
+    <a href="/Admin/RestoranDuzenle/@ViewBag.sirketID" class="btn btn-danger">Restoran Ekle</a>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Restoran ID</th>
+                <th scope="col">Restoran Adı</th>
+                <th scope="col">İl - İlçe</th>
+                <th scope="col">Düzenle</th>
+                <th scope="col">Personelleri Gör</th>
+                <th scope="col">Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (restoranGetir u in Model)
+            {
+                <tr>
+                    <td>@u.restoranID</td>
+                    <td>@u.restoranAdi</td>
+                    <td>@u.ilAdi - @u.ilceAdi</td>
+                    <td>
+                        <form action="/Admin/RestoranDuzenle/" method="post">
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" value="@u.restoranID.ToString()" id="ID" name="srk">
+                            </div>
+                            <button type="submit" class="btn btn-danger">Düzenle</button>
+                        </form>
+                    </td>
+                    <td><a href="/Admin/Personeller/@u.restoranID" class="btn btn-danger">Personeller</a></td>
+                    <td><a href="#" class="btn btn-danger ssil" sirketID="@u.restoranID">Sil</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script>
+        $(".ssil").click(
+            function () {
+                var sonuc = confirm("Restoran silinsin mi?");
+                if (sonuc) {
+                    var kid = $(this).attr("sirketID");
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "/Admin/RestoranSil/" + kid,
+                            success: function () {
+                                alert("Restoran başarıyla silindi!")
+                                window.location.replace("/Admin/Restoranlar/@ViewBag.sirketID");
+                            },
+                            error: function () {
+                                alert("Restoran silinemedi..")
+                            }
+                        }
+                    );
+                }
+                else {
+                    alert("Silme işlemi iptal edildi!");
+                }
+            }
+        )
+    </script>
+}
